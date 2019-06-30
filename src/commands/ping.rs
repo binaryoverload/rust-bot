@@ -6,7 +6,7 @@ use serenity::framework::standard::{
 };
 
 #[command]
-pub fn ping(ctx: &mut Context, msg: &Message, mut args: Args) -> CommandResult {
+pub fn ping(ctx: &mut Context, msg: &Message, mut _args: Args) -> CommandResult {
     msg.channel_id.say(&ctx.http, "Pong")?;
     Ok(())
 }

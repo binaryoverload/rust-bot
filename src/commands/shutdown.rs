@@ -9,7 +9,7 @@ use log::error;
 use crate::ShardManagerContainer;
 
 #[command]
-pub fn shutdown(ctx: &mut Context, msg: &Message, mut args: Args) -> CommandResult {
+pub fn shutdown(ctx: &mut Context, msg: &Message, mut _args: Args) -> CommandResult {
     let data = ctx.data.read();
     let shard_manager = match data.get::<ShardManagerContainer>() {
        Some(v) => v,
