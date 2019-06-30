@@ -1,5 +1,6 @@
 use serenity::prelude::*;
 use serenity::model::prelude::*;
+use serenity::utils::Colour;
 use serenity::framework::standard::{
     Args, CommandResult,
     macros::command,
@@ -21,6 +22,12 @@ pub fn shutdown(ctx: &mut Context, msg: &Message, mut _args: Args) -> CommandRes
    };
 
    let mut manager = shard_manager.lock();
+   msg.channel_id.send_message(&ctx.http, |m| {
+       m.embed(|e| {
+           e.colour(Colour::RED).description("Shutting down, goodbye!")
+       });
+       m
+   })?;
    manager.shutdown_all();
-    Ok(())
+   Ok(())
 }
